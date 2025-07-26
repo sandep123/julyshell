@@ -1,0 +1,51 @@
+#!/bin/bash
+
+
+<<help 
+this is for waether reprt for every cirty 
+
+help
+
+
+show_usage() {
+	echo "Usage : $0  <city_name>"
+	echo "Example: $0 <Bhopal>"
+
+}
+
+# check if city is provided
+
+
+
+CITY=$1
+
+if [ -z "$CITY" ]; then
+       echo "Errro : city name not provided"
+	show_usage
+ 	exit 1
+fi
+echo "Displyaing weather details $CITY....."
+
+weather=$(curl -s "https://wttr.in/${CITY}?formate=3")
+
+if [ "$weather" == *"unknow  loaction..."*]; then
+	echo "Enter the valid  city name... unable to fetach data wwith this $CITY name."
+	exit 1
+fi
+
+
+
+
+# Display the weather deatils 
+
+echo "============================================="
+
+echo "                WEATHER REPORT               " 
+
+echo "============================================="
+
+echo "$weather"
+
+echo "============================================="
+
+
